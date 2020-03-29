@@ -39,7 +39,7 @@ class WebsocketRequestImpl(object):
         check_should_not_none(callback, "callback")
 
         def subscription_handler(connection):
-            connection.send(aggregate_trade_channel(symbol))
+            connection.send(trade_channel(symbol))
             time.sleep(0.01)
 
         def json_parse(json_wrapper):
