@@ -64,6 +64,17 @@ class SubscriptionClient(object):
             conn.close()
         self.connections.clear()
 
+    def subscribe_trade_event(self, symbol: 'str', callback, error_handler=None):
+        """
+        Trade Streams
+
+        The Trade Streams push trade information that is aggregated for a single taker order every 100 milliseconds.
+
+        Stream Name: <symbol>@trade
+        """
+        request = self.websocket_request_impl.subscribe_trade_event(symbol, callback, error_handler)
+        self.__create_connection(request)
+
     def subscribe_aggregate_trade_event(self, symbol: 'str', callback, error_handler=None):
         """
         Aggregate Trade Streams
